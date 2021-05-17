@@ -19,8 +19,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     public ventanaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        int x = 0;
     }
 
     /**
