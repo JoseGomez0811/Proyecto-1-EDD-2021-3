@@ -1,0 +1,4 @@
+Almacen A:
+Pantalla,3
+RAM,2
+Procesador,1

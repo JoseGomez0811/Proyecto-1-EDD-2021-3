@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package organizedChaos;
+package Interfaces;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author joseg
  */
-public class ventanaAdmin extends javax.swing.JFrame {
+public class ventanaPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form ventanaAdmin
+     * Creates new form ventanaPrincipal
      */
-    public ventanaAdmin() {
+    public ventanaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -28,85 +30,74 @@ public class ventanaAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAgg = new javax.swing.JButton();
-        btnDel = new javax.swing.JButton();
-        btnStock = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnAgg.setText("Agregar Almacén");
-        btnAgg.addActionListener(new java.awt.event.ActionListener() {
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAggActionPerformed(evt);
+                btnClienteActionPerformed(evt);
             }
         });
 
-        btnDel.setText("Eliminar Almacén");
-        btnDel.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmin.setText("Administrador");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelActionPerformed(evt);
+                btnAdminActionPerformed(evt);
             }
         });
 
-        btnStock.setText("Gestionar Stock ");
-        btnStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStockActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("ADMINISTRADOR");
+        jLabel1.setText("AMAZON");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAgg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(btnStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(42, 42, 42)
-                .addComponent(btnAgg)
+                .addGap(45, 45, 45)
+                .addComponent(btnCliente)
                 .addGap(18, 18, 18)
-                .addComponent(btnDel)
-                .addGap(18, 18, 18)
-                .addComponent(btnStock)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(btnAdmin)
+                .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggActionPerformed
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
         
-        ventanaAggAlmacen venagg = new ventanaAggAlmacen();
-        venagg.setVisible(true);
-    }//GEN-LAST:event_btnAggActionPerformed
+        ventanaAdmin venadmin = new ventanaAdmin();
+        
+        int contraseña = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la contraseña: 0000"));
+        
+        if (contraseña == 0000){
+            venadmin.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Contraseña invalido, intentelo de nuevo");
+        }
+        
+        //venadmin.setVisible(true);
+    }//GEN-LAST:event_btnAdminActionPerformed
 
-    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
-        ventanaDelAlmacen vendel = new ventanaDelAlmacen();
-        vendel.setVisible(true);
-    }//GEN-LAST:event_btnDelActionPerformed
-
-    private void btnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockActionPerformed
-        // TODO add your handling code here:
-        ventanaStock venstock = new ventanaStock();
-        venstock.setVisible(true);
-                
-    }//GEN-LAST:event_btnStockActionPerformed
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,28 +116,28 @@ public class ventanaAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaAdmin().setVisible(true);
+                new ventanaPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgg;
-    private javax.swing.JButton btnDel;
-    private javax.swing.JButton btnStock;
+    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
