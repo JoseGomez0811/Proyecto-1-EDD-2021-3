@@ -1,0 +1,3 @@
+Almacen C:
+Placa,7
+Teclado,8
