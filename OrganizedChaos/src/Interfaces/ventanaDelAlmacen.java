@@ -10,7 +10,7 @@ import Clases.ManejoArchivo;
 
 /**
  *
- * @author joseg
+ * @author José Gómez
  */
 public class ventanaDelAlmacen extends javax.swing.JFrame {
 

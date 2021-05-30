@@ -7,7 +7,7 @@ package Interfaces;
 
 /**
  *
- * @author joseg
+ * @author José Gómez
  */
 public class ventanaAggAlmacen extends javax.swing.JFrame {
 

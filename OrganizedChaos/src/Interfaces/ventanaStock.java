@@ -7,7 +7,7 @@ package Interfaces;
 
 /**
  *
- * @author joseg
+ * @author José Gómez
  */
 public class ventanaStock extends javax.swing.JFrame {
 
