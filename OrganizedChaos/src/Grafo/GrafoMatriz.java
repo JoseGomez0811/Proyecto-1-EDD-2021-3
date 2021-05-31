@@ -2,7 +2,10 @@
 package Grafo;
 
 import Clases.Almacen;
+import Clases.Ruta;
 import javax.swing.JOptionPane;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 /**
  *Clase GrafoMatriz
  * 
@@ -20,15 +23,15 @@ public class GrafoMatriz {
     /**
      * array de arcos (probablemente se vaya a cambiar )
      */
-    private String[] arcos;
+    private Lista arcos;
     /**
      * arreglo bidimensional
      */
-    private final int [][] matriz;
+    private  int [][] matriz;
     /**
      * Cantidad de almacenes
      */
-    private final int sizeAlm;
+    private int sizeAlm;
     
     // Constructores
     /**
@@ -36,20 +39,24 @@ public class GrafoMatriz {
      * @param almacenes
      * @param arcos 
      */
-    public GrafoMatriz(Lista almacenes, String[] arcos ){
+    public GrafoMatriz(Lista almacenes, Lista arcos ){
         this.almacenes=almacenes;
         this.arcos=arcos;
         this.sizeAlm=almacenes.getSize();
-        matriz = new int [sizeAlm][sizeAlm];
+        
+    }
+    
+    //Metodos
+    
+    public void generarM(){
+        int tam=sizeAlm;
+        matriz = new int [tam][tam];
         for (int i = 0; i < sizeAlm; i++){
             for (int j = 0; i < sizeAlm; i++){
                 matriz[i][j] = 0;
             }
         }
     }
-    
-    //Metodos
-    
     /**
      * Se encarga de llenar la matriz con la distancia de los caminos entre los grafos
      */
@@ -59,12 +66,13 @@ public class GrafoMatriz {
         int peso;
         int numAl=0;
         int numIl=0;
-        
-        for (String arco: arcos ) {
-            String[] cadena= arco.split(",");
-            inicio=cadena[0].toUpperCase();
-            fina=cadena[1].toUpperCase();
-            peso=Integer.parseInt(cadena[2]);
+        try{
+            
+        for (Nodo arco=arcos.getpFirst(); arco!=null; arco=arco.getpNext()  ) {
+            inicio=arco.getRuta().getSalida().getId().toUpperCase();
+            fina=arco.getRuta().getLlegada().getId().toUpperCase();
+            peso=arco.getRuta().getPeso();
+            
             for (int i = 0; i < almacenes.getSize(); i++) {
                 String id= almacenes.getAlmacen(i).getId();
                 if(inicio.equals(id)){
@@ -79,6 +87,9 @@ public class GrafoMatriz {
             }
             matriz[numAl][numIl]=peso;
         }
+        }catch (Exception err){
+            JOptionPane.showMessageDialog(null, "Una lista esta vacia");
+        }
     }
         
     /**
@@ -88,7 +99,7 @@ public class GrafoMatriz {
         System.out.print(" ");
         for(int i = 0; i < sizeAlm; i++)
         {
-                System.out.printf( almacenes.getAlmacen(i).getId()+"     "  );
+                System.out.printf( almacenes.getAlmacen(i).getId()+"    "  );
         }
         System.out.println();
         for( int i = 0; i < sizeAlm; i++){
@@ -106,15 +117,18 @@ public class GrafoMatriz {
      * @param b
      * @param peso 
      */
-    private void addArco(String a, String b, String peso){
-        String arco= a+","+b+","+peso;
-        String[] cadena= new String[arcos.length+1];
-        for (int i = 0; i < arcos.length; i++) {
-            cadena[i]=arcos[i];
+    private void addArco(Almacen salida, Almacen llegada, int peso){
+        //En construccion 
+        try{
+            if(almacenes.buscar(salida.getId())!=null && almacenes.buscar(llegada.getId())!=null ){
+                 Ruta nueva= new Ruta(salida,llegada,peso);
+                 arcos.insertarRuta(nueva);
+            }else{
+                JOptionPane.showMessageDialog(null, "El almacen no pertenece a la lista");
+            }
+        }catch(Exception error) {
+            
         }
-        cadena[arcos.length+1]=arco;
-        arcos=cadena;
-        
     }
     
     
@@ -124,25 +138,108 @@ public class GrafoMatriz {
      * @param stock 
      */
     public void addAlmacen(String id, Lista stock){
-      Almacen nuevo= new Almacen(id, stock);
-      almacenes.insertarUltimo(nuevo);
-      int prueba=0;
-      while(prueba<2){
-            String s = JOptionPane.showInputDialog(null,
-                   "Ingrese el destino de la ruta: ",
-                   "Nuevo almacen",
-                   JOptionPane.INFORMATION_MESSAGE);
-            String peso= JOptionPane.showInputDialog(null,
-                   "Ingrese la distancia: ",
-                   "Nuevo almacen",
-                   JOptionPane.INFORMATION_MESSAGE);
-           this.addArco(id, s, peso);
-           prueba++;
+        try{
+            if(almacenes.buscar(id)==null){
+                Almacen nuevo= new Almacen(id, stock);
+                almacenes.insertarAlmacen(nuevo);
+                sizeAlm++;
+                while(true){
+                    Almacen llegada=elegirAlm();
+                    int peso=pedirPeso();
+                    Almacen llegada2=elegirAlm();
+                    int peso2=pedirPeso();
+                    if (llegada!=null ){
+                        if(peso!=0){
+                            addArco(nuevo, llegada, peso);
+                            addArco(nuevo, llegada2, peso2);
+                            generarM();
+                            llenarMatriz();
+                            break;
+                        }else{
+                            JOptionPane.showMessageDialog(null, "No es un input correcto ");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error al colocar el almacen ");
+                    }
+                }
+                JOptionPane.showMessageDialog(null,"Se agrego un nuevo almacen");
+            }else{
+                JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
+            }
+        }catch (Exception err){
+            JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
+        }
       }
+     public Almacen elegirAlm(){
+         try{
+             
+            String[] cadena = new String[almacenes.getSize()-1];
+            int count=0;
+
+            for(Nodo aux=almacenes.getpFirst();aux!=null; aux=aux.getpNext()){
+                if(aux==almacenes.getpLast()){
+                    count++;
+                }else{
+                   cadena[count]=aux.getAlmacen().getId();
+                   count++;
+                }
+            }
+            Icon icono = new ImageIcon(getClass().getResource("almacen.jpg"));
+            String resp = (String) JOptionPane.showInputDialog(null, "Seleccione el almacen de llegada", "Almacen", JOptionPane.DEFAULT_OPTION,icono , cadena, cadena[0]);
+            return almacenes.buscar(resp).getAlmacen();
+                 
+         }catch(Exception err){
+             JOptionPane.showMessageDialog(null,"Error");
+             return null;
+         }
+         
+     }   
+    public int pedirPeso(){
+        String peso;
+        try{
+            while(true){
+                peso = JOptionPane.showInputDialog(null, "¿Cual es la distancia entre los almacenes?", "redondee");
+                if(Integer.parseInt(peso)<=0){
+                    JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
+                    continue;
+                }else{
+                    return Integer.parseInt(peso);
+                }
+            }
+        }catch(Exception err){
+                JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        return 0;
+    }  
+    
+    public void eliminarAlmacen(){
+        
+        
+    }
+    
+    
+    
+ }   
+                    
+                    
+                
+                            
+                            
+                              
+                                
+                                
+                                
+                            
+                            
+                    
+                    
+    
+                
+                
+        
       
       
       
-  }   
-}
+
         
         

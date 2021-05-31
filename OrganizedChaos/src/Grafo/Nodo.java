@@ -2,14 +2,18 @@
 package Grafo;
 
 import Clases.Almacen;
+import Clases.Producto;
+import Clases.Ruta;
 
 /**
- *
+ *Clase Nodo
+ * Guarda la direccion de un almacen 
  * @author raco1
  */
 public class Nodo {
     
     private Almacen almacen;
+    private Ruta ruta;
     private Nodo pNext;
     
     public Nodo(Almacen almacen){
@@ -17,10 +21,16 @@ public class Nodo {
         this.pNext=null;
     }
 
+    public Nodo(Ruta ruta) {
+        this.ruta = ruta;
+        this.pNext=null;
+    }
+    
+
     /**
      * @return the almacen
      */
-    public Object getAlmacen() {
+    public Almacen getAlmacen() {
         return almacen;
     }
 
@@ -43,6 +53,20 @@ public class Nodo {
      */
     public void setpNext(Nodo pNext) {
         this.pNext = pNext;
+    }
+
+    /**
+     * @return the producto
+     */
+    public Ruta getRuta() {
+        return ruta;
+    }
+
+    /**
+     * @param producto the producto to set
+     */
+    public void setRuta(Ruta ruta) {
+        this.ruta = ruta;
     }
     
     

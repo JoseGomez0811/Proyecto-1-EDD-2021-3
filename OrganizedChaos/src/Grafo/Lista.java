@@ -2,6 +2,8 @@
 package Grafo;
 
 import Clases.Almacen;
+import Clases.Ruta;
+import javax.swing.JOptionPane;
 
 /**
  *Clase Lista
@@ -77,7 +79,7 @@ public class Lista {
      * Agrega un elemento al final de la lista 
      * @param almacen 
      */
-    public void insertarUltimo(Almacen almacen){
+    public void insertarAlmacen(Almacen almacen){
         Nodo nuevo= new Nodo(almacen);
         if(isVacio()){
             pFirst=nuevo;
@@ -89,7 +91,51 @@ public class Lista {
         }
         size+=1;
     }
-            
+    public void insertarRuta(Ruta ruta){
+        Nodo nuevo= new Nodo(ruta);
+        if(isVacio()){
+            pFirst=nuevo;
+            pLast=nuevo;
+        }else{
+            Nodo aux = pLast;
+            aux.setpNext(nuevo);
+            pLast=nuevo;
+        }
+        size+=1;
+    }
+    //En construccion
+    public void eliminar(String id){
+        Nodo actual, anterior;
+       boolean encontrado;
+       actual=buscar(id);
+        
+      
+   }
+    
+        
+     public void imprimir(){
+        String mostrar="";
+        if(!isVacio()){
+            Nodo aux = pFirst;
+            for (int i = 0; i < size; i++) {
+                mostrar+=aux.getAlmacen().getId()+"\n";
+                //System.out.print(aux.getDato()+ "\n ");
+                aux = aux.getpNext();
+            }
+            JOptionPane.showMessageDialog(null,mostrar );
+        } else{
+            System.out.println("Lista vacia");
+        }
+    }
+    public Nodo buscar(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getAlmacen().getId())){
+                return aux;
+            }
+        }
+        return null;
+    }       
         
     /**
      * Busca el elemento de la lista indicado por indice
