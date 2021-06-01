@@ -47,7 +47,9 @@ public class GrafoMatriz {
     }
     
     //Metodos
-    
+    /**
+    Se encarga de iniciar la matriz
+    */
     public void generarM(){
         int tam=sizeAlm;
         matriz = new int [tam][tam];
@@ -113,8 +115,8 @@ public class GrafoMatriz {
     
     /**
      * Asigna un nuevo arco 
-     * @param a
-     * @param b
+     * @param salida
+     * @param llegada
      * @param peso 
      */
     private void addArco(Almacen salida, Almacen llegada, int peso){
@@ -170,6 +172,11 @@ public class GrafoMatriz {
             JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
         }
       }
+    
+   /**
+    * Se encarga de pedir un almacen de llegada para generar una nueva ruta
+    * @return el almacen a donde queremos llegar
+    */
      public Almacen elegirAlm(){
          try{
              
@@ -194,6 +201,11 @@ public class GrafoMatriz {
          }
          
      }   
+     
+     /**
+      * Se encarga de pedir el la distancia entre dos almacenes
+      * @return la distancia entre los almacenes
+      */
     public int pedirPeso(){
         String peso;
         try{
@@ -212,8 +224,17 @@ public class GrafoMatriz {
         return 0;
     }  
     
-    public void eliminarAlmacen(){
-        
+    
+    /**
+     * Se encarga de eliminar un almacen y sus rutas
+     * @param id 
+     */
+    public void eliminarAlmacen(String id){
+        almacenes.removerPorReferencia(id);
+        arcos.removerRuta(id);
+        arcos.removerRuta(id);
+        almacenes.imprimir();
+        arcos.imprimirRuta();
         
     }
     

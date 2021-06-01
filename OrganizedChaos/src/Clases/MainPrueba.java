@@ -55,8 +55,7 @@ public class MainPrueba {
         System.out.println("Esta es la buena ");
         grafo.addAlmacen("E", productos);
         grafo.imprimirGrafo();
-        almacenes.eliminar("b");
-        almacenes.imprimir();
+        grafo.eliminarAlmacen("B");
     }
     
 }
