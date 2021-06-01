@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author joseg
+ * @author José Gómez
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
 
@@ -97,6 +97,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
+        ventanaCompra vencom = new ventanaCompra();
+        vencom.setVisible(true);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     /**

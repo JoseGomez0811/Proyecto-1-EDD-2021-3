@@ -26,6 +26,12 @@ public class ManejoArchivo {
     private String puntoA;
     private String puntoB;
     private int distancia;
+    public String linea;
+    public String almacenes = "";
+    public String line = "";
+    public String reponer = "";
+    
+    Lista lista = new Lista();
     
     File ficheroA = new File ("test\\almacenA.txt");
     File ficheroB = new File ("test\\almacenB.txt");
@@ -299,7 +305,30 @@ public class ManejoArchivo {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
+    public void leerPrincipal(){
+        try{
+            FileReader fr = new FileReader("test\\amazon.txt");
+            BufferedReader br = new BufferedReader(fr);
+            
+            while ((linea = br.readLine()) != null){
+                if (!linea.isEmpty()){
+                    almacenes += linea + "\n";
+                }
+            }
+             
+
+            if (!"".equals(almacenes)){
+                lista.ingresarNodo(almacenes); 
+            }
+
+            
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }   
+         
+    }
+
     public void buscarDatosA(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -307,26 +336,32 @@ public class ManejoArchivo {
         try{
             BufferedReader leer = new BufferedReader(new FileReader("test\\almacenA.txt"));
             String linea;
-            //int nLineas = (int) leer.lines().count();
             
-            //String lineaNueva;
-            
-            while ((linea = leer.readLine()) != null){
-                
-                if (linea.indexOf(producto3) != -1){
-                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+linea);
-                    linea = (producto3 + "," + cantidadR);
-                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ linea); 
+            while ((line = leer.readLine()) != null){
+                if (line.indexOf(producto3) != -1){
+                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+line);
+                    line = (producto3 + "," + cantidadR);
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ line); 
                 }
-
-                BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroA, true)));
-                escribir.write(linea);
-                escribir.write("\n");
-                //JOptionPane.showMessageDialog(null, "Las rutas han sido guardadas exitosamente");
-                escribir.close();
-                //JOptionPane.showMessageDialog(null, nLineas); 
-
+                
+                if (!line.isEmpty()){
+                    reponer += line + "\n";
+                }
+ 
             }
+            
+            if (!"".equals(reponer)){
+                PrintWriter pw = new PrintWriter("test\\almacenA.txt");
+                pw.print("");
+                pw.close();
+                
+                BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroA, true)));
+                escribir.write(reponer);
+                escribir.close();
+                reponer = "";
+                
+            }
+            
         
         }catch ( Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -344,22 +379,34 @@ public class ManejoArchivo {
             
             //String lineaNueva;
             
-            while ((linea = leer.readLine()) != null){
-                
-                if (linea.indexOf(producto3) != -1){
-                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+linea);
-                    linea = (producto3 + "," + cantidadR);
-                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ linea); 
+            while ((line = leer.readLine()) != null){
+                if (line.indexOf(producto3) != -1){
+                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+line);
+                    line = (producto3 + "," + cantidadR);
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ line); 
                 }
-
+                
+                if (!line.isEmpty()){
+                    reponer += line + "\n";
+                }
+ 
+            }
+            
+            if (!"".equals(reponer)){
+                PrintWriter pw = new PrintWriter("test\\almacenB.txt");
+                pw.print("");
+                pw.close();
+                
                 BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroB, true)));
-                escribir.write(linea);
-                escribir.write("\n");
+                escribir.write(reponer);
+                //escribir.write("\n");
                 //JOptionPane.showMessageDialog(null, "Las rutas han sido guardadas exitosamente");
                 escribir.close();
                 //JOptionPane.showMessageDialog(null, nLineas); 
-
+                reponer = "";
+                
             }
+            
         
         }catch ( Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -377,22 +424,34 @@ public class ManejoArchivo {
             
             //String lineaNueva;
             
-            while ((linea = leer.readLine()) != null){
-                
-                if (linea.indexOf(producto3) != -1){
-                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+linea);
-                    linea = (producto3 + "," + cantidadR);
-                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ linea); 
+            while ((line = leer.readLine()) != null){
+                if (line.indexOf(producto3) != -1){
+                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+line);
+                    line = (producto3 + "," + cantidadR);
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ line); 
                 }
-
+                
+                if (!line.isEmpty()){
+                    reponer += line + "\n";
+                }
+ 
+            }
+            
+            if (!"".equals(reponer)){
+                PrintWriter pw = new PrintWriter("test\\almacenC.txt");
+                pw.print("");
+                pw.close();
+                
                 BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroC, true)));
-                escribir.write(linea);
-                escribir.write("\n");
+                escribir.write(reponer);
+                //escribir.write("\n");
                 //JOptionPane.showMessageDialog(null, "Las rutas han sido guardadas exitosamente");
                 escribir.close();
                 //JOptionPane.showMessageDialog(null, nLineas); 
-
+                reponer = "";
+                
             }
+            
         
         }catch ( Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -410,22 +469,34 @@ public class ManejoArchivo {
             
             //String lineaNueva;
             
-            while ((linea = leer.readLine()) != null){
-                
-                if (linea.indexOf(producto3) != -1){
-                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+linea);
-                    linea = (producto3 + "," + cantidadR);
-                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ linea); 
+            while ((line = leer.readLine()) != null){
+                if (line.indexOf(producto3) != -1){
+                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+line);
+                    line = (producto3 + "," + cantidadR);
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ line); 
                 }
-
+                
+                if (!line.isEmpty()){
+                    reponer += line + "\n";
+                }
+ 
+            }
+            
+            if (!"".equals(reponer)){
+                PrintWriter pw = new PrintWriter("test\\almacenD.txt");
+                pw.print("");
+                pw.close();
+                
                 BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroD, true)));
-                escribir.write(linea);
-                escribir.write("\n");
+                escribir.write(reponer);
+                //escribir.write("\n");
                 //JOptionPane.showMessageDialog(null, "Las rutas han sido guardadas exitosamente");
                 escribir.close();
                 //JOptionPane.showMessageDialog(null, nLineas); 
-
+                reponer = "";
+                
             }
+            
         
         }catch ( Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -443,22 +514,34 @@ public class ManejoArchivo {
             
             //String lineaNueva;
             
-            while ((linea = leer.readLine()) != null){
-                
-                if (linea.indexOf(producto3) != -1){
-                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+linea);
-                    linea = (producto3 + "," + cantidadR);
-                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ linea); 
+            while ((line = leer.readLine()) != null){
+                if (line.indexOf(producto3) != -1){
+                    JOptionPane.showMessageDialog(null, "Se encontro el registro: "+line);
+                    line = (producto3 + "," + cantidadR);
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado el stock: "+ line); 
                 }
-
+                
+                if (!line.isEmpty()){
+                    reponer += line + "\n";
+                }
+ 
+            }
+            
+            if (!"".equals(reponer)){
+                PrintWriter pw = new PrintWriter("test\\almacenE.txt");
+                pw.print("");
+                pw.close();
+                
                 BufferedWriter escribir = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ficheroE, true)));
-                escribir.write(linea);
-                escribir.write("\n");
+                escribir.write(reponer);
+                //escribir.write("\n");
                 //JOptionPane.showMessageDialog(null, "Las rutas han sido guardadas exitosamente");
                 escribir.close();
                 //JOptionPane.showMessageDialog(null, nLineas); 
-
+                reponer = "";
+                
             }
+            
         
         }catch ( Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());

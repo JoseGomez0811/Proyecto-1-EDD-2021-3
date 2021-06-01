@@ -7,7 +7,7 @@ package Interfaces;
 
 /**
  *
- * @author joseg
+ * @author José Gómez
  */
 public class ventanaAdmin extends javax.swing.JFrame {
 

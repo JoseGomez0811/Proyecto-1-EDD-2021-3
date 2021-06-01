@@ -10,7 +10,7 @@ import Clases.ManejoArchivo;
 
 /**
  *
- * @author Franklin
+ * @author José Gómez
  */
 public class ventanaReponerStock extends javax.swing.JFrame {
 
