@@ -41,10 +41,15 @@ public class ManejoArchivo {
     File ficheroP = new File ("test\\amazon.txt");
     File ficheroR = new File ("test\\rutas.txt");
 
+    /**
+    *Constructor de la clase ManejoArcivo
+    **/
     public ManejoArchivo(){
         
     }
-    
+    /**
+    *Método para validar la existencia de un archivo txt
+    **/
     public void existeArchivo(){
         try{
             if (ficheroA.exists()){
@@ -59,6 +64,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información proporcionada por el usuario en el archivo almacenA.txt
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void escribirDatosA(String producto2, int stock2){
        producto = producto2;
        stock = stock2;
@@ -75,6 +85,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo almacenA.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerDatosA(){
         try{
             
@@ -105,6 +118,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información proporcionada por el usuario en el archivo almacenB.txt* 
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void escribirDatosB(String producto2, int stock2){
        producto = producto2;
        stock = stock2;
@@ -121,6 +139,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo almacenB.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerDatosB(){
         try{
             FileReader fr = new FileReader("test\\almacenB.txt");
@@ -142,6 +163,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información proporcionada por el usuario en el archivo almacenC.txt
+    *@param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    *@param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void escribirDatosC(String producto2, int stock2){
        producto = producto2;
        stock = stock2;
@@ -158,6 +184,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo almacenC.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerDatosC(){
         try{
             FileReader fr = new FileReader("test\\almacenC.txt");
@@ -180,6 +209,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información proporcionada por el usuario en el archivo almacenD.txt
+    *@param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    *@param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void escribirDatosD(String producto2, int stock2){
        producto = producto2;
        stock = stock2;
@@ -196,6 +230,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo almacenD.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerDatosD(){
         try{
             FileReader fr = new FileReader("test\\almacenD.txt");
@@ -218,6 +255,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información proporcionada por el usuario en el archivo almacenE.txt
+    *@param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    *@param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void escribirDatosE(String producto2, int stock2){
        producto = producto2;
        stock = stock2;
@@ -234,6 +276,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo almacenE.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerDatosE(){
         try{
             FileReader fr = new FileReader("test\\almacenE.txt");
@@ -256,6 +301,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que escribe la información relacionada con las rutas en el archivo rutas.txt
+    **/
     public void escribirRutas(){
        
        try{
@@ -284,6 +332,9 @@ public class ManejoArchivo {
        }
     }
     
+    /**
+    *Método que lee el archivo rutas.txt y posteriormente lo escribe en el archivo amazon.txt 
+    **/
     public void leerRutas(){
         try{
             FileReader fr = new FileReader("test\\rutas.txt");
@@ -306,6 +357,9 @@ public class ManejoArchivo {
         }
     }
 
+    /**
+    *Método que lee el archivo amazon.txt para posteriormente mostrar su información en la clase ventanaCompra 
+    **/
     public void leerPrincipal(){
         try{
             FileReader fr = new FileReader("test\\amazon.txt");
@@ -329,6 +383,11 @@ public class ManejoArchivo {
          
     }
 
+    /**
+    *Método que lee el archivo almacenA.txt, busca un elemento del fichero, modifica el elemento y escribe en el mismo archivo con la información nueva
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void buscarDatosA(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -368,6 +427,11 @@ public class ManejoArchivo {
         }
     } 
     
+    /**
+    *Método que lee el archivo almacenB.txt, busca un elemento del fichero, modifica el elemento y escribe en el mismo archivo con la información nueva
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void buscarDatosB(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -413,6 +477,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que lee el archivo almacenC.txt, busca un elemento del fichero, modifica el elemento y escribe en el mismo archivo con la información nueva
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void buscarDatosC(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -458,6 +527,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que lee el archivo almacenD.txt, busca un elemento del fichero, modifica el elemento y escribe en el mismo archivo con la información nueva
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void buscarDatosD(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -503,6 +577,11 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que lee el archivo almacenE.txt, busca un elemento del fichero, modifica el elemento y escribe en el mismo archivo con la información nueva
+    * @param producto2 El parámetro producto2 define los nombres de los productos ingresado por el usuario
+    * @param stock2 El parámetro stock2 define la cantidad que habrá disponible del producto ingresado por el usuario
+    **/
     public void buscarDatosE(String producto2, int stock2){
         String producto3 = producto2;
         int cantidadR = stock2;
@@ -548,6 +627,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que elimina el archivo almacenA.txt
+    **/
     public void eliminarAlmacenA(){
         File fichero = new File("test\\almacenA.txt");
         
@@ -558,6 +640,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que elimina el archivo almacenB.txt
+    **/
     public void eliminarAlmacenB(){
         File fichero = new File("test\\almacenB.txt");
         
@@ -568,6 +653,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que elimina el archivo almacenC.txt
+    **/
     public void eliminarAlmacenC(){
         File fichero = new File("test\\almacenC.txt");
         
@@ -578,6 +666,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que elimina el archivo almacenD.txt
+    **/
     public void eliminarAlmacenD(){
         File fichero = new File("test\\almacenD.txt");
         
@@ -588,6 +679,9 @@ public class ManejoArchivo {
         }
     }
     
+    /**
+    *Método que elimina el archivo almacenE.txt
+    **/
     public void eliminarAlmacenE(){
         File fichero = new File("test\\almacenE.txt");
         
