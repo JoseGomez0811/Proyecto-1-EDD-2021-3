@@ -18,7 +18,14 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        /**
+        *Se llama a la clase ventanaPrincipal 
+        **/
         ventanaPrincipal venprin = new ventanaPrincipal();
+        /**
+        *Se hace visible la ventana principal del programa
+        **/
         venprin.setVisible(true);
     }
     
