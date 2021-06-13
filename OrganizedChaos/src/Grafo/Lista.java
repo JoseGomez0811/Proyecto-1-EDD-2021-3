@@ -2,6 +2,7 @@
 package Grafo;
 
 import Clases.Almacen;
+import Clases.Producto;
 import Clases.Ruta;
 import javax.swing.JOptionPane;
 
@@ -91,6 +92,18 @@ public class Lista {
         }
         size+=1;
     }
+    public void insertarPro(Producto pro){
+        Nodo nuevo= new Nodo(pro);
+        if(isVacio()){
+            pFirst=nuevo;
+            pLast=nuevo;
+        }else{
+            Nodo aux = pLast;
+            aux.setpNext(nuevo);
+            pLast=nuevo;
+        }
+        size+=1;
+    }
     /**
      * se encarga de insertar una ruta a la lista de rutas
      * @param ruta 
@@ -156,6 +169,20 @@ public class Lista {
             Nodo aux = pFirst;
             for (int i = 0; i < size; i++) {
                 mostrar+=aux.getAlmacen().getId()+"\n";
+                //System.out.print(aux.getDato()+ "\n ");
+                aux = aux.getpNext();
+            }
+            JOptionPane.showMessageDialog(null,mostrar );
+        } else{
+            System.out.println("Lista vacia");
+        }
+    }
+     public void imprimirProducto(){
+        String mostrar="";
+        if(!isVacio()){
+            Nodo aux = pFirst;
+            for (int i = 0; i < size; i++) {
+                mostrar+=aux.getPro().getNombre()+ aux.getPro().getCantidad()  +"\n";
                 //System.out.print(aux.getDato()+ "\n ");
                 aux = aux.getpNext();
             }

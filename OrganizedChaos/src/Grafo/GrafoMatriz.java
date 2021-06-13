@@ -19,7 +19,7 @@ public class GrafoMatriz {
     /**
      * Lista de almacenes
      */
-    private final Lista almacenes;
+    private Lista almacenes;
     /**
      * array de arcos (probablemente se vaya a cambiar )
      */
@@ -51,10 +51,10 @@ public class GrafoMatriz {
     Se encarga de iniciar la matriz
     */
     public void generarM(){
-        int tam=sizeAlm;
+        int tam=getSizeAlm();
         matriz = new int [tam][tam];
-        for (int i = 0; i < sizeAlm; i++){
-            for (int j = 0; i < sizeAlm; i++){
+        for (int i = 0; i < getSizeAlm(); i++){
+            for (int j = 0; i < getSizeAlm(); i++){
                 matriz[i][j] = 0;
             }
         }
@@ -70,19 +70,19 @@ public class GrafoMatriz {
         int numIl=0;
         try{
             
-        for (Nodo arco=arcos.getpFirst(); arco!=null; arco=arco.getpNext()  ) {
+        for (Nodo arco=getArcos().getpFirst(); arco!=null; arco=arco.getpNext()  ) {
             inicio=arco.getRuta().getSalida().getId().toUpperCase();
             fina=arco.getRuta().getLlegada().getId().toUpperCase();
             peso=arco.getRuta().getPeso();
             
-            for (int i = 0; i < almacenes.getSize(); i++) {
-                String id= almacenes.getAlmacen(i).getId();
+            for (int i = 0; i < getAlmacenes().getSize(); i++) {
+                String id= getAlmacenes().getAlmacen(i).getId();
                 if(inicio.equals(id)){
                     numAl=i;
                 }
             }
-            for (int k = 0; k < almacenes.getSize(); k++) {
-                String id=almacenes.getAlmacen(k).getId();
+            for (int k = 0; k < getAlmacenes().getSize(); k++) {
+                String id=getAlmacenes().getAlmacen(k).getId();
                 if(fina.equals(id)){
                     numIl=k;
                 }
@@ -99,14 +99,14 @@ public class GrafoMatriz {
      */
     public void imprimirGrafo(){
         System.out.print(" ");
-        for(int i = 0; i < sizeAlm; i++)
+        for(int i = 0; i < getSizeAlm(); i++)
         {
-                System.out.printf( almacenes.getAlmacen(i).getId()+"    "  );
+                System.out.printf(getAlmacenes().getAlmacen(i).getId()+"    "  );
         }
         System.out.println();
-        for( int i = 0; i < sizeAlm; i++){
-                System.out.printf( almacenes.getAlmacen(i).getId());
-                for(int j = 0; j < sizeAlm; j++){
+        for( int i = 0; i < getSizeAlm(); i++){
+                System.out.printf(getAlmacenes().getAlmacen(i).getId());
+                for(int j = 0; j < getSizeAlm(); j++){
                         System.out.printf(" %3d" ,matriz[i][j]);
                 }
                 System.out.println();
@@ -122,9 +122,9 @@ public class GrafoMatriz {
     private void addArco(Almacen salida, Almacen llegada, int peso){
         //En construccion 
         try{
-            if(almacenes.buscar(salida.getId())!=null && almacenes.buscar(llegada.getId())!=null ){
+            if(getAlmacenes().buscar(salida.getId())!=null && getAlmacenes().buscar(llegada.getId())!=null ){
                  Ruta nueva= new Ruta(salida,llegada,peso);
-                 arcos.insertarRuta(nueva);
+                 getArcos().insertarRuta(nueva);
             }else{
                 JOptionPane.showMessageDialog(null, "El almacen no pertenece a la lista");
             }
@@ -141,10 +141,10 @@ public class GrafoMatriz {
      */
     public void addAlmacen(String id, Lista stock){
         try{
-            if(almacenes.buscar(id)==null){
+            if(getAlmacenes().buscar(id)==null){
                 Almacen nuevo= new Almacen(id, stock);
-                almacenes.insertarAlmacen(nuevo);
-                sizeAlm++;
+                getAlmacenes().insertarAlmacen(nuevo);
+                setSizeAlm(getSizeAlm() + 1);
                 while(true){
                     Almacen llegada=elegirAlm();
                     int peso=pedirPeso();
@@ -180,11 +180,11 @@ public class GrafoMatriz {
      public Almacen elegirAlm(){
          try{
              
-            String[] cadena = new String[almacenes.getSize()-1];
+            String[] cadena = new String[getAlmacenes().getSize()-1];
             int count=0;
 
-            for(Nodo aux=almacenes.getpFirst();aux!=null; aux=aux.getpNext()){
-                if(aux==almacenes.getpLast()){
+            for(Nodo aux=getAlmacenes().getpFirst();aux!=null; aux=aux.getpNext()){
+                if(aux==getAlmacenes().getpLast()){
                     count++;
                 }else{
                    cadena[count]=aux.getAlmacen().getId();
@@ -193,7 +193,7 @@ public class GrafoMatriz {
             }
             Icon icono = new ImageIcon(getClass().getResource("almacen.jpg"));
             String resp = (String) JOptionPane.showInputDialog(null, "Seleccione el almacen de llegada", "Almacen", JOptionPane.DEFAULT_OPTION,icono , cadena, cadena[0]);
-            return almacenes.buscar(resp).getAlmacen();
+            return getAlmacenes().buscar(resp).getAlmacen();
                  
          }catch(Exception err){
              JOptionPane.showMessageDialog(null,"Error");
@@ -230,12 +230,54 @@ public class GrafoMatriz {
      * @param id 
      */
     public void eliminarAlmacen(String id){
-        almacenes.removerPorReferencia(id);
-        arcos.removerRuta(id);
-        arcos.removerRuta(id);
-        almacenes.imprimir();
-        arcos.imprimirRuta();
+        getAlmacenes().removerPorReferencia(id);
+        getArcos().removerRuta(id);
+        getArcos().removerRuta(id);
+        getAlmacenes().imprimir();
+        getArcos().imprimirRuta();
         
+    }
+
+    /**
+     * @return the almacenes
+     */
+    public Lista getAlmacenes() {
+        return almacenes;
+    }
+
+    /**
+     * @return the arcos
+     */
+    public Lista getArcos() {
+        return arcos;
+    }
+
+    /**
+     * @return the sizeAlm
+     */
+    public int getSizeAlm() {
+        return sizeAlm;
+    }
+
+    /**
+     * @param almacenes the almacenes to set
+     */
+    public void setAlmacenes(Lista almacenes) {
+        this.almacenes = almacenes;
+    }
+
+    /**
+     * @param arcos the arcos to set
+     */
+    public void setArcos(Lista arcos) {
+        this.arcos = arcos;
+    }
+
+    /**
+     * @param sizeAlm the sizeAlm to set
+     */
+    public void setSizeAlm(int sizeAlm) {
+        this.sizeAlm = sizeAlm;
     }
     
     
