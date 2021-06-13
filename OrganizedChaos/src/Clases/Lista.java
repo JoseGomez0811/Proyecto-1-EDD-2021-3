@@ -18,7 +18,7 @@ public class Lista {
 
 
     /**
-    *Método constructor de la clasde Lista 
+    *Método constructor de la clase de Lista 
     **/
     public Lista() {
         pFirst = null;
