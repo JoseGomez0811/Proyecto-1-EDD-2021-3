@@ -3,6 +3,7 @@ package Clases;
 
 import Grafo.GrafoMatriz;
 import Grafo.Lista;
+import Grafo.RecorrerGrafo;
 
 /**
  *
@@ -17,6 +18,13 @@ public class MainPrueba {
         // TODO code application logic here
         Lista productos= new Lista();
         Lista almacenes= new Lista();
+        Producto perro= new Producto("pantalla",13 );
+        Producto gato= new Producto("celular",13 );
+        Producto piguana= new Producto("audifono",13 );
+        productos.insertarPro(perro);
+        productos.insertarPro(gato);
+        productos.insertarPro(piguana);
+        
         Almacen primer= new Almacen("A",productos ); 
         Almacen segundo= new Almacen("B",productos );
         Almacen tercero= new Almacen("C", productos);
@@ -55,7 +63,10 @@ public class MainPrueba {
         System.out.println("Esta es la buena ");
         grafo.addAlmacen("E", productos);
         grafo.imprimirGrafo();
-        grafo.eliminarAlmacen("B");
+        //grafo.eliminarAlmacen("B");
+        String id= "B";
+        RecorrerGrafo.recorrerProf(grafo, id);
+        RecorrerGrafo.recorrerAnch(grafo);
     }
     
 }

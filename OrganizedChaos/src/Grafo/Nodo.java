@@ -13,14 +13,19 @@ import Clases.Ruta;
 public class Nodo {
     
     private Almacen almacen;
+    private Producto pro; 
     private Ruta ruta;
     private Nodo pNext;
+    
     
     public Nodo(Almacen almacen){
         this.almacen=almacen;
         this.pNext=null;
     }
-
+    public Nodo(Producto pro){
+        this.pro=pro;
+        this.pNext=null;
+    }
     public Nodo(Ruta ruta) {
         this.ruta = ruta;
         this.pNext=null;
@@ -67,6 +72,20 @@ public class Nodo {
      */
     public void setRuta(Ruta ruta) {
         this.ruta = ruta;
+    }
+
+    /**
+     * @return the pro
+     */
+    public Producto getPro() {
+        return pro;
+    }
+
+    /**
+     * @param pro the pro to set
+     */
+    public void setPro(Producto pro) {
+        this.pro = pro;
     }
     
     
