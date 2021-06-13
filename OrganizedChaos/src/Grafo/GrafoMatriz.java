@@ -98,6 +98,7 @@ public class GrafoMatriz {
      * Imprime la matriz de adyacencia (Esta aqui temporalmente)
      */
     public void imprimirGrafo(){
+
         System.out.print(" ");
         for(int i = 0; i < getSizeAlm(); i++)
         {
@@ -108,11 +109,23 @@ public class GrafoMatriz {
                 System.out.printf(getAlmacenes().getAlmacen(i).getId());
                 for(int j = 0; j < getSizeAlm(); j++){
                         System.out.printf(" %3d" ,matriz[i][j]);
+
+        System.out.println(" ");
+        for(int i = 0; i < sizeAlm; i++)
+        {
+                System.out.println(almacenes.getAlmacen(i).getId()+"    "  );
+        }
+        System.out.println();
+        for( int i = 0; i < sizeAlm; i++){
+                System.out.println(almacenes.getAlmacen(i).getId());
+                for(int j = 0; j < sizeAlm; j++){
+                        System.out.println(" %3d" + matriz[i][j]);
+
                 }
                 System.out.println();
         }
  }
-    
+ } 
     /**
      * Asigna un nuevo arco 
      * @param salida

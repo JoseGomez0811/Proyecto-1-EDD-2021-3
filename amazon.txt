@@ -1,0 +1,9 @@
+Almacenes
+Almacén A:
+Pantalla, 3
+RAM, 2
+Procesador, 1
+Almacén B:
+Pantalla, 3
+Gráfica, 5
+Almacén C:

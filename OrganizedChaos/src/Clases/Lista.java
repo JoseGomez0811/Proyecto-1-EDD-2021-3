@@ -17,13 +17,18 @@ public class Lista {
     public Nodo pNow;
 
 
-//Constructor-----------------------------------------------------
+    /**
+    *Método constructor de la clase de Lista 
+    **/
     public Lista() {
         pFirst = null;
         pLast = null;
     }
     
-//Funciones y metodos--------------------------------------------------------
+    /**
+    *Método que agrega un nuevo elemento a la lista
+    * @param dato El parámetro dato define los nombre de los productos que serán agregado a la lista
+    **/
     public void ingresarNodo(Object dato){
         Nodo pNew = new Nodo(dato);
         
@@ -38,7 +43,10 @@ public class Lista {
             pLast = pNew;
         }
     }
-  
+    
+    /**
+    *Método que muestra la lista
+    **/
     public void mostrarLista(){
         pNow = pFirst;
         while (pNow != null){
