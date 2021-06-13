@@ -111,21 +111,21 @@ public class GrafoMatriz {
                         System.out.printf(" %3d" ,matriz[i][j]);
 
         System.out.println(" ");
-        for(int i = 0; i < sizeAlm; i++)
+        for(int r = 0; r < sizeAlm; r++)
         {
-                System.out.println(almacenes.getAlmacen(i).getId()+"    "  );
+                System.out.println(almacenes.getAlmacen(r).getId()+"    "  );
         }
         System.out.println();
-        for( int i = 0; i < sizeAlm; i++){
-                System.out.println(almacenes.getAlmacen(i).getId());
-                for(int j = 0; j < sizeAlm; j++){
-                        System.out.println(" %3d" + matriz[i][j]);
-
+        for( int k= 0; k < sizeAlm; k++){
+                System.out.println(almacenes.getAlmacen(k).getId());
+                for(int e = 0; e < sizeAlm; e++){
+                        System.out.println(" %3d" + matriz[k][e]);
                 }
                 System.out.println();
+            } 
         }
- }
- } 
+    }        
+}     
     /**
      * Asigna un nuevo arco 
      * @param salida

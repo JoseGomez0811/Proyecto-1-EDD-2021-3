@@ -10,7 +10,7 @@ import Clases.Almacen;
 public class RecorrerGrafo {
     public static Almacen[] recorrerProf(GrafoMatriz g, String id) {
         Almacen w, v;
-        Pila pila= new Pila();
+        
         Almacen[]m;
         m= new Almacen[g.getSizeAlm()];
         v=g.getAlmacenes().buscar(id).getAlmacen();
