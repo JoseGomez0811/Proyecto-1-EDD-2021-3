@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import Clases.Almacen;
+import Clases.Ruta;
+import Grafo.GrafoMatriz;
+import Grafo.Lista;
+
 /**
  *
  * @author José Gómez
@@ -14,6 +19,27 @@ public class ventanaAdmin extends javax.swing.JFrame {
     /**
      * Creates new form ventanaAdmin
      */
+    
+    Lista productos= new Lista();
+    Lista almacenes= new Lista();
+    Almacen primer= new Almacen("A",productos ); 
+    Almacen segundo= new Almacen("B",productos );
+    Almacen tercero= new Almacen("C", productos);
+    Almacen cuarto= new Almacen("D", productos);
+    
+    Ruta ab= new Ruta(primer,segundo,23);
+    Ruta ac= new Ruta(primer,tercero,25);
+    Ruta bc= new Ruta(segundo,tercero,35);
+    Ruta ba= new Ruta(segundo,primer,30);
+    Ruta ca= new Ruta(tercero,primer,30);
+    Ruta cd= new Ruta(tercero,cuarto,40);
+    Ruta da= new Ruta(cuarto,primer,50);
+    Ruta db= new Ruta(cuarto,segundo,60);
+    
+    Lista arcos= new Lista();
+    
+    GrafoMatriz grafo= new GrafoMatriz(almacenes,arcos);
+    
     public ventanaAdmin() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,6 +58,7 @@ public class ventanaAdmin extends javax.swing.JFrame {
         btnDel = new javax.swing.JButton();
         btnStock = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,6 +85,13 @@ public class ventanaAdmin extends javax.swing.JFrame {
 
         jLabel1.setText("ADMINISTRADOR");
 
+        jButton1.setText("Grafo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,7 +104,8 @@ public class ventanaAdmin extends javax.swing.JFrame {
                     .addComponent(btnStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,7 +119,9 @@ public class ventanaAdmin extends javax.swing.JFrame {
                 .addComponent(btnDel)
                 .addGap(18, 18, 18)
                 .addComponent(btnStock)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,6 +146,34 @@ public class ventanaAdmin extends javax.swing.JFrame {
         venstock.setVisible(true);
                 
     }//GEN-LAST:event_btnStockActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        almacenes.insertarAlmacen(primer);
+        almacenes.insertarAlmacen(segundo);
+        almacenes.insertarAlmacen(tercero);
+        almacenes.insertarAlmacen(cuarto);
+        
+        arcos.insertarRuta(ab);
+        arcos.insertarRuta(ac);
+        arcos.insertarRuta(bc);
+        arcos.insertarRuta(ba);
+        arcos.insertarRuta(ca);
+        arcos.insertarRuta(cd);
+        arcos.insertarRuta(da);
+        arcos.insertarRuta(db);
+        
+        grafo.generarM();
+        grafo.imprimirGrafo();
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>");
+        grafo.llenarMatriz();
+        grafo.imprimirGrafo();
+        System.out.println("Esta es la buena ");
+        grafo.addAlmacen("E", productos);
+        grafo.imprimirGrafo();
+        grafo.eliminarAlmacen("B");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +215,7 @@ public class ventanaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAgg;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnStock;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
